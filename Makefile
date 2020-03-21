@@ -4,7 +4,8 @@ TSTAG ?= v0.97.0
 build-tailscaled-container:
 	docker build -f build/Dockerfile.build -t tailscale-qnap-builder:latest build/
 
-out/tailscaled-amd64 out/tailscaled-386 out/tailscaled-arm out/tailscaled-arm64: build-tailscaled-container
+.PHONY: out/tailscaled
+out/tailscaled: build-tailscaled-container
 	docker run --rm -v ${CURDIR}/out:/out -e TSTAG=${TSTAG} tailscale-qnap-builder
 
 .PHONY: build-qdk-container
@@ -12,5 +13,10 @@ build-qdk-container:
 	docker build -f build/Dockerfile.qpkg -t qdk:latest build/
 
 .PHONY: out/pkg
-out/pkg: build-qdk-container
+out/pkg: build-qdk-container out/tailscaled
 	docker run --rm -v ${CURDIR}/out:/out -e TSTAG=${TSTAG} qdk:latest
+
+.PHONY: clean
+clean:
+	rm -rf out/pkg
+	rm -f out/tailscaled-amd64 out/tailscaled-arm64 out/tailscaled-386 out/tailscaled-arm32
