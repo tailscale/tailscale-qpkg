@@ -5,9 +5,12 @@ export VERSION=${TSTAG:1}
 
 qbuild --create-env Tailscale --build-version $VERSION
 cp out/tailscaled-386 /Tailscale/x86/tailscaled
+cp out/tailscale-386 /Tailscale/x86/tailscale
 cp out/tailscaled-amd64 /Tailscale/x86_64/tailscaled
+cp out/tailscale-amd64 /Tailscale/x86_64/tailscale
 # 32-bit ARM?
 cp out/tailscaled-arm64 /Tailscale/arm_64/tailscaled
+cp out/tailscale-arm64 /Tailscale/arm_64/tailscale
 
 sed -i '/#QPKG_REQUIRE/cQPKG_REQUIRE="QVPN"' /Tailscale/qpkg.cfg 
 

@@ -8,4 +8,5 @@ go mod tidy
 for GOARCH in 386 amd64 arm arm64; do
     export GOARCH
     go build -o /out/tailscaled-$GOARCH tailscale.com/cmd/tailscaled
+    go build -o /out/tailscale-$GOARCH tailscale.com/cmd/tailscale
 done
