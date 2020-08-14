@@ -8,7 +8,10 @@ cp out/tailscaled-386 /Tailscale/x86/tailscaled
 cp out/tailscale-386 /Tailscale/x86/tailscale
 cp out/tailscaled-amd64 /Tailscale/x86_64/tailscaled
 cp out/tailscale-amd64 /Tailscale/x86_64/tailscale
-# 32-bit ARM?
+# arm32
+cp out/tailscale-arm /Tailscale/arm-x41/tailscale
+cp out/tailscaled-arm /Tailscale/arm-x41/tailscale
+
 cp out/tailscaled-arm64 /Tailscale/arm_64/tailscaled
 cp out/tailscale-arm64 /Tailscale/arm_64/tailscale
 
@@ -31,6 +34,7 @@ sed -i '/: ADD STOP ACTIONS HERE/c\
 
 qbuild --root /Tailscale --build-arch x86 --build-dir /out/pkg
 qbuild --root /Tailscale --build-arch x86_64 --build-dir /out/pkg
+qbuild --root /Tailscale --build-arch arm-x41 --build-dir /out/pkg
 qbuild --root /Tailscale --build-arch arm_64 --build-dir /out/pkg
 
 chmod -R 777 /out
