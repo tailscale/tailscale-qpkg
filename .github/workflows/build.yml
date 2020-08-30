@@ -10,10 +10,9 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-    # Runs a single command using the runners shell
     - name: Create Tailscale build container
       run: make build-tailscaled-container
 
@@ -25,3 +24,9 @@ jobs:
 
     - name: Create Tailscale QPKG
       run : make out/pkg
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: qpkg
+        path: out/pkg/
