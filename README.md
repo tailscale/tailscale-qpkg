@@ -1,3 +1,5 @@
+![Build packages](https://github.com/ivokub/tailscale-qpkg/workflows/Build%20packages/badge.svg)
+
 Tailscale QPKG builder
 ======================
 
@@ -16,6 +18,9 @@ By default, the v0.97.0 Tailscale release is built. To configure the release
 number, set the environment variable `TSTAG` to the release number, e.g.
 `TSTAG=v0.98.0 make out/pkg`.
 
+Alternatively, the automatically built packages can be download from Github
+Actions. Packages are built once a week.
+
 Installation
 ------------
 
@@ -29,4 +34,4 @@ Installation
 License
 -------
 
-MIT
+This repository is licensed under MIT.
