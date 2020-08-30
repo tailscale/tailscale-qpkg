@@ -23,9 +23,6 @@ jobs:
     - name: Create Tailscale build container
       run: make build-tailscaled-container
 
-    - name: Build Tailscale binaries
-      run: make out/tailscaled
-
     - name: Create QDK build container
       run: make build-qdk-container
 
