@@ -1,0 +1,20 @@
+name: Get Tailscale version
+
+on:
+  push:
+    branches: [ workflow ]
+
+jobs:
+  getversion:
+    runs-on: ubuntu-20.04
+    env:
+      TSTAG: v1.0.0
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set version
+      run: echo ::set-env name=TSTAG::$(curl https://api.github.com/repos/tailscale/tailscale/tags -s | jq ".[0].name" -r)
+
+    - name: Get version
+      run: echo $TSTAG
