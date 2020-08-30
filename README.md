@@ -1,4 +1,4 @@
-![Build packages](https://github.com/ivokub/tailscale-qpkg/workflows/Build%20packages/badge.svg)
+![Build packages](https://github.com/ivokub/tailscale-qpkg/workflows/Build%20packages/badge.svg?branch=master)
 
 Tailscale QPKG builder
 ======================
