@@ -9,7 +9,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-20.04
+    env:
+      TSTAG: v1.0.0
     steps:
+    - name: Set Tailscale version from source
+      run: echo ::set-env name=TSTAG::$(curl https://api.github.com/repos/tailscale/tailscale/tags -s | jq ".[0].name" -r)
+
     - name: Checkout repository
       uses: actions/checkout@v2
 
@@ -28,5 +33,5 @@ jobs:
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: qpkg
+        name: Tailscale-${{ env.TSTAG }}-QPKG-all
         path: out/pkg/
