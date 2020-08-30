@@ -2,7 +2,7 @@ name: Build packages
 
 on:
   push:
-    branches: [ master, workflow ]
+    branches: [ master ]
   pull_request:
     branches: [ master ]
 
