@@ -6,11 +6,14 @@ export VERSION=${TSTAG:1}
 qbuild --create-env Tailscale --build-version $VERSION
 cp out/tailscaled-386 /Tailscale/x86/tailscaled
 cp out/tailscale-386 /Tailscale/x86/tailscale
+
 cp out/tailscaled-amd64 /Tailscale/x86_64/tailscaled
 cp out/tailscale-amd64 /Tailscale/x86_64/tailscale
-# arm32
-cp out/tailscale-arm /Tailscale/arm-x41/tailscale
-cp out/tailscaled-arm /Tailscale/arm-x41/tailscale
+
+cp out/tailscaled-armv7 /Tailscale/arm-x41/tailscaled
+cp out/tailscale-armv7 /Tailscale/arm-x41/tailscale
+cp out/tailscaled-armv5 /Tailscale/arm-x19/tailscaled
+cp out/tailscale-armv5 /Tailscale/arm-x19/tailscale
 
 cp out/tailscaled-arm64 /Tailscale/arm_64/tailscaled
 cp out/tailscale-arm64 /Tailscale/arm_64/tailscale
@@ -34,6 +37,7 @@ sed -i '/: ADD STOP ACTIONS HERE/c\
 
 qbuild --root /Tailscale --build-arch x86 --build-dir /out/pkg
 qbuild --root /Tailscale --build-arch x86_64 --build-dir /out/pkg
+qbuild --root /Tailscale --build-arch arm-x19 --build-dir /out/pkg
 qbuild --root /Tailscale --build-arch arm-x41 --build-dir /out/pkg
 qbuild --root /Tailscale --build-arch arm_64 --build-dir /out/pkg
 
