@@ -15,7 +15,7 @@ jobs:
       TSTAG: v1.0.0
     steps:
     - name: Set Tailscale version from source
-      run: echo ::set-env name=TSTAG::$(curl https://api.github.com/repos/tailscale/tailscale/tags -s | jq ".[0].name" -r)
+      run: echo "$(curl https://api.github.com/repos/tailscale/tailscale/tags -s | jq '.[0].name' -r)" >> $GITHUB_ENV
 
     - name: Checkout repository
       uses: actions/checkout@v2
