@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export PATH=$PATH:/usr/share/QDK/bin
-export VERSION=${TSTAG:1}
+export VERSION=${TSTAG:-1}
 
 qbuild --create-env Tailscale --build-version $VERSION
 cp out/tailscaled-386 /Tailscale/x86/tailscaled
