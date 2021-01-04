@@ -21,7 +21,7 @@ cp out/tailscale-arm64 /Tailscale/arm_64/tailscale
 mkdir -p /Tailscale/shared/var/run/tailscale
 mkdir -p /Tailscale/shared/var/lib/tailscale
 
-sed -i '/#QPKG_REQUIRE/cQPKG_REQUIRE="QVPN"' /Tailscale/qpkg.cfg 
+sed -i '/#QPKG_REQUIRE/cQPKG_REQUIRE="QVPN"' /Tailscale/qpkg.cfg
 
 sed -i '/: ADD START ACTIONS HERE/c\
     $QPKG_ROOT/tailscaled --port 41641 --state=$QPKG_ROOT/var/lib/tailscale/tailscaled.state --socket=$QPKG_ROOT/var/run/tailscale/tailscaled.sock 2> /dev/null &\
