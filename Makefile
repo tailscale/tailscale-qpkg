@@ -19,5 +19,5 @@ out/pkg: build-qdk-container out/tailscaled
 .PHONY: clean
 clean:
 	rm -rf out/pkg
-	rm -f out/tailscaled-amd64 out/tailscaled-arm64 out/tailscaled-386 out/tailscaled-armv5 out/tailscaled-armv6 out/tailscaled-armv7
-	rm -f out/tailscale-amd64 out/tailscale-arm64 out/tailscale-386 out/tailscale-armv5 out/tailscale-armv6 out/tailscale-armv7
+	rm -f out/tailscaled-*
+	rm -f out/tailscale-*

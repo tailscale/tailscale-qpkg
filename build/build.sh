@@ -11,7 +11,7 @@ for GOARCH in 386 amd64 arm64; do
     go build -o /out/tailscale-$GOARCH tailscale.com/cmd/tailscale
 done
 
-for GOARM in 5 6 7; do
+for GOARM in 5 7; do
     export GOARM
     export GOARCH=arm
     go build -o /out/tailscaled-armv$GOARM tailscale.com/cmd/tailscaled
