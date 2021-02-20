@@ -1,0 +1,55 @@
+name: Create and upload release
+
+on:
+  push:
+    tags:
+    - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Create Tailscale build container
+        run: make build-tailscaled-container
+
+      - name: Create QDK build container
+        run: make build-qdk-container
+
+      - name: Create Tailscale QPKG
+        run : make out/pkg
+
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: true
+          prerelease: true
+
+      - name: Upload release asset (x86-64)
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: out/pkg/Tailscale_${{ github.ref }}_x86_64.qpkg
+          asset_name: Tailscale_${{ github.ref }}_x86_64.qpkg
+          asset_content_type: application/zip
+
+      - name: Upload release asset (arm-64)
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: out/pkg/Tailscale_${{ github.ref }}_arm_64.qpkg
+          asset_name: Tailscale_${{ github.ref }}_arm_64.qpkg
+          asset_content_type: application/zip
