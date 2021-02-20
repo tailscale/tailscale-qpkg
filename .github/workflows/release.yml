@@ -33,7 +33,7 @@ jobs:
           prerelease: true
 
       - name: Upload release asset (x86-64)
-        id: upload-release-asset 
+        id: upload-release-asset-x86-64
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -44,7 +44,7 @@ jobs:
           asset_content_type: application/zip
 
       - name: Upload release asset (arm-64)
-        id: upload-release-asset 
+        id: upload-release-asset-arm-64
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
