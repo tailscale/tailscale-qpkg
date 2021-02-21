@@ -1,12 +1,12 @@
 name: Build packages
 
 on:
-  push:
-    branches: [ master ]
+#  push:
+#    branches: [ master ]
   pull_request:
     branches: [ master ]
-  schedule:
-    - cron: "0 0 * * 0"
+#  schedule:
+#    - cron: "0 0 * * 0"
 
 jobs:
   build:
