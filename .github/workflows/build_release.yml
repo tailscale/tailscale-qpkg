@@ -29,4 +29,70 @@ jobs:
           upload_url: ${{ github.event.release.upload_url }}
           asset_path: out/pkg/Tailscale_${{ github.event.release.tag_name }}_x86_64.qpkg
           asset_name: Tailscale_${{ github.event.release.tag_name }}_x86_64.qpkg
-          asset_content_type: application/zip
+          asset_content_type: application/octet-stream
+
+      - name: Upload release asset (arm-64)
+        id: upload-release-asset-arm-64
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: out/pkg/Tailscale_${{ github.event.release.tag_name }}_arm_64.qpkg
+          asset_name: Tailscale_${{ github.event.release.tag_name }}_arm_64.qpkg
+          asset_content_type: application/octet-stream
+
+      - name: Upload release asset (x86-ce53xx)
+        id: upload-release-asset-x86-ce53xx
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: out/pkg/Tailscale_${{ github.event.release.tag_name }}_x86_ce53xx.qpkg
+          asset_name: Tailscale_${{ github.event.release.tag_name }}_x86_ce53xx.qpkg
+          asset_content_type: application/octet-stream
+
+      - name: Upload release asset (x86)
+        id: upload-release-asset-x86
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: out/pkg/Tailscale_${{ github.event.release.tag_name }}_x86.qpkg
+          asset_name: Tailscale_${{ github.event.release.tag_name }}_x86.qpkg
+          asset_content_type: application/octet-stream
+
+      - name: Upload release asset (arm-x19)
+        id: upload-release-asset-arm-x19
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: out/pkg/Tailscale_${{ github.event.release.tag_name }}_arm-x19.qpkg
+          asset_name: Tailscale_${{ github.event.release.tag_name }}_arm-x19.qpkg
+          asset_content_type: application/octet-stream
+
+      - name: Upload release asset (arm-x31)
+        id: upload-release-asset-arm-x31
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: out/pkg/Tailscale_${{ github.event.release.tag_name }}_arm-x31.qpkg
+          asset_name: Tailscale_${{ github.event.release.tag_name }}_arm-x31.qpkg
+          asset_content_type: application/octet-stream
+
+      - name: Upload release asset (arm-x41)
+        id: upload-release-asset-arm-x41
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: out/pkg/Tailscale_${{ github.event.release.tag_name }}_arm-x41.qpkg
+          asset_name: Tailscale_${{ github.event.release.tag_name }}_arm-x41.qpkg
+          asset_content_type: application/octet-stream
