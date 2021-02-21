@@ -1,0 +1,32 @@
+name: Build package for new release
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build-release:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Create Tailscale build container
+        run: make build-tailscaled-container
+
+      - name: Create QDK build container
+        run: make build-qdk-container
+
+      - name: Create Tailscale QPKG
+        run : make out/pkg
+
+      - name: Upload release asset (x86-64)
+        id: upload-release-asset-x86-64
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.release.upload_url }}
+          asset_path: out/pkg/Tailscale_${{ github.event.release.tag_name }}_x86_64.qpkg
+          asset_name: Tailscale_${{ github.event.release.tag_name }}_x86_64.qpkg
+          asset_content_type: application/zip
