@@ -32,6 +32,7 @@ jobs:
           release_name: Release ${{ github.ref }}
           draft: true
           prerelease: true
+        run: echo "TAG=${{ github.ref }}" >> $GITHUB_ENV
 
       - name: Upload release asset (x86-64)
         id: upload-release-asset-x86-64
@@ -40,8 +41,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: out/pkg/Tailscale_${{ github.ref }}_x86_64.qpkg
-          asset_name: Tailscale_${{ github.ref }}_x86_64.qpkg
+          asset_path: out/pkg/Tailscale_${{ env.TAG }}_x86_64.qpkg
+          asset_name: Tailscale_${{ env.TAG }}_x86_64.qpkg
           asset_content_type: application/zip
 
       - name: Upload release asset (arm-64)
