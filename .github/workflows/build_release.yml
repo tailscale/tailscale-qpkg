@@ -26,7 +26,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ github.event.release.release.upload_url }}
+          upload_url: ${{ github.event.release.upload_url }}
           asset_path: out/pkg/Tailscale_${{ github.event.release.tag_name }}_x86_64.qpkg
           asset_name: Tailscale_${{ github.event.release.tag_name }}_x86_64.qpkg
           asset_content_type: application/zip
