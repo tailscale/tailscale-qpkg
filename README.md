@@ -1,4 +1,5 @@
 ![Build packages](https://github.com/ivokub/tailscale-qpkg/workflows/Build%20packages/badge.svg?branch=master)
+![Latest release](https://img.shields.io/github/v/release/ivokub/tailscale-qpkg?sort=semver)
 
 Tailscale QPKG builder
 ======================
@@ -14,12 +15,9 @@ downloaded in the Docker containers. To invoke the build, run `make out/pkg`.
 This builds Tailscale QPKG for different platforms and stores them in
 **out/pkg**.
 
-By default, the v0.97.0 Tailscale release is built. To configure the release
-number, set the environment variable `TSTAG` to the release number, e.g.
-`TSTAG=v0.98.0 make out/pkg`.
-
-Alternatively, the automatically built packages can be download from Github
-Actions. Packages are built once a week.
+By default, Tailscale release v1.4.4 is built. To configure the release number,
+set the environment variable `TSTAG` to the release number, e.g.
+`TSTAG=v1.4.4 make out/pkg`.
 
 Installation
 ------------
