@@ -31,6 +31,10 @@ cp icons/Tailscale_gray.gif /Tailscale/icons/
 cp icons/Tailscale_80.gif /Tailscale/icons/
 
 sed -i '/#QPKG_REQUIRE/cQPKG_REQUIRE="QVPN"' /Tailscale/qpkg.cfg
+sed -i '/#QPKG_WEBUI/cQPKG_WEBUI=""' /Tailscale/qpkg.cfg
+sed -i '/#QPKG_WEB_PORT/cQPKG_WEB_PORT="50992"' /Tailscale/qpkg.cfg
+sed -i '/#QPKG_USE_PROXY/cQPKG_USE_PROXY="1"' /Tailscale/qpkg.cfg
+sed -i '/#QPKG_PROXY_PATH/cQPKG_PROXY_PATH="/tailscaleweb/"' /Tailscale/qpkg.cfg
 
 sed -i '/: ADD START ACTIONS HERE/c\
     $QPKG_ROOT/tailscaled --port 41641 --state=$QPKG_ROOT/var/lib/tailscale/tailscaled.state --socket=$QPKG_ROOT/var/run/tailscale/tailscaled.sock 2> /dev/null &\
