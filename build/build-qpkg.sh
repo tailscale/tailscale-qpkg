@@ -25,6 +25,10 @@ cp out/tailscale-arm64 /Tailscale/arm_64/tailscale
 
 mkdir -p /Tailscale/shared/var/run/tailscale
 mkdir -p /Tailscale/shared/var/lib/tailscale
+mkdir -p /Tailscale/icons/
+cp icons/Tailscale.gif /Tailscale/icons/
+cp icons/Tailscale_gray.gif /Tailscale/icons/
+cp icons/Tailscale_80.gif /Tailscale/icons/
 
 sed -i '/#QPKG_REQUIRE/cQPKG_REQUIRE="QVPN"' /Tailscale/qpkg.cfg
 

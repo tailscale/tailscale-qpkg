@@ -14,7 +14,7 @@ build-qdk-container:
 
 .PHONY: out/pkg
 out/pkg: build-qdk-container out/tailscaled
-	docker run --rm -v ${CURDIR}/out:/out -e TSTAG=${TSTAG} qdk:latest
+	docker run --rm -v ${CURDIR}/out:/out -v ${CURDIR}/icons:/icons -e TSTAG=${TSTAG} qdk:latest
 
 .PHONY: clean
 clean:
