@@ -1,4 +1,4 @@
-TSTAG ?= v1.8.1
+TSTAG ?= v1.8.2
 
 .PHONY: build-tailscaled-container
 build-tailscaled-container:
