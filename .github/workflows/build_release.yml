@@ -4,6 +4,8 @@ on:
   push:
     tags:
     - '*'
+  release:
+    types: [created]
 
 jobs:
   build-release:
