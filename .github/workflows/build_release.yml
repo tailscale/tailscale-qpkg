@@ -5,7 +5,7 @@ on:
     tags:
     - '*'
   release:
-    types: [created]
+    types: [published, created, released]
 
 jobs:
   build-release:
