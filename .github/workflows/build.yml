@@ -1,18 +1,12 @@
 name: Build packages
 
 on:
-#  push:
-#    branches: [ master ]
   pull_request:
     branches: [ master ]
-#  schedule:
-#    - cron: "0 0 * * 0"
 
 jobs:
   build:
     runs-on: ubuntu-20.04
-    env:
-      TSTAG: v1.0.0
     steps:
     - name: Set Tailscale version from source
       run: echo "TSTAG=$(curl https://api.github.com/repos/tailscale/tailscale/tags -s | jq '.[0].name' -r)" >> $GITHUB_ENV
@@ -34,3 +28,4 @@ jobs:
       with:
         name: Tailscale-${{ env.TSTAG }}-QPKG-all
         path: out/pkg/
+        retention-days: 5
