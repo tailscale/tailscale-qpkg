@@ -23,11 +23,18 @@ Installation
 ------------
 
 1. Install QVPN package in QNAP App Center to provide `tun` kernel modules.
-2. Manually install Tailscale package in QNAP App Center.
-3. SSH into your QNAP
-4. Get system volume path: `getcfg SHARE_DEF defVolMP -f /etc/config/def_share.info` (e.g. `/share/CE_CACHEDEV1_DATA/`).
-5. Go to Tailscale package directory: `cd /share/CE_CACHEDEV1_DATA/.qpkg/Tailscale`
-6. Authorize your client: `./tailscale -socket var/run/tailscale/tailscaled.sock up`
+2. QNAP package build example "Ubuntu on Windows (WSL) https://docs.microsoft.com/en-us/windows/wsl/install-win10 "
+  2b. sudo apt install docker.io
+  2c. git clone https://github.com/ivokub/tailscale-qpkg.git
+  2d. cd tailscale-qpkg/
+  2e. dockerd (then open a new windows to be able to run next line if you ctrl-c service stops)
+  2f. sudo make out/pkg
+3. When make is done get the correct package fropm \tailscale-qpkg\out\pkg\ folder
+4. Manually install Tailscale package in QNAP App Center.
+4. SSH into your QNAP
+5. Get system volume path: `getcfg SHARE_DEF defVolMP -f /etc/config/def_share.info` (e.g. `/share/CE_CACHEDEV1_DATA/`).
+6. Go to Tailscale package directory: `cd /share/CE_CACHEDEV1_DATA/.qpkg/Tailscale`
+7. Authorize your client: `./tailscale -socket var/run/tailscale/tailscaled.sock up`
 
 License
 -------
