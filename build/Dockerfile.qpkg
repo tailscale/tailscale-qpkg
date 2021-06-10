@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 RUN apt-get update -y && \
     apt-get install -y --no-install-recommends \
@@ -6,5 +6,4 @@ RUN apt-get update -y && \
     ca-certificates
 RUN git clone https://github.com/qnap-dev/QDK.git
 RUN cd /QDK && ./InstallToUbuntu.sh install
-COPY build-qpkg.sh /
-CMD /build-qpkg.sh
+ENV PATH="/usr/share/QDK/bin:${PATH}"

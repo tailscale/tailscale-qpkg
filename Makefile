@@ -1,23 +1,28 @@
-TSTAG ?= v1.32.2
+TRACK ?= stable
+# QNAP has a upper limit of 10 characters for the version.
+# For unstable builds we might have 1.X.YYYY-Z
+TSTAG ?= 1.8.7
+QNAPTAG ?= 1
 
-.PHONY: build-tailscaled-container
-build-tailscaled-container:
-	docker build -f build/Dockerfile.build -t tailscale-qnap-builder:latest build/
-
-.PHONY: out/tailscaled
-out/tailscaled: build-tailscaled-container
-	docker run --rm -v ${CURDIR}/out:/out -e TSTAG=${TSTAG} tailscale-qnap-builder
+.PHONY: fetch
+fetch:
+	TSTAG=${TSTAG} TRACK=${TRACK} ./build/fetch.sh
 
 .PHONY: build-qdk-container
 build-qdk-container:
-	docker build -f build/Dockerfile.qpkg -t qdk:latest build/
+	docker build -f build/Dockerfile.qpkg -t build.tailscale.io/qdk:latest build/
 
-.PHONY: out/pkg
-out/pkg: build-qdk-container out/tailscaled
-	docker run --rm -v ${CURDIR}/out:/out -e TSTAG=${TSTAG} qdk:latest
+.PHONY: pkg
+pkg: fetch
+	docker run --rm \
+		-e TSTAG=${TSTAG} \
+		-e QNAPTAG=${QNAPTAG} \
+		-v ${CURDIR}/out/tailscale-${TSTAG}:/out \
+		-v ${CURDIR}/Tailscale:/Tailscale \
+		-v ${CURDIR}/build/build-qpkg.sh:/build-qpkg.sh \
+		build.tailscale.io/qdk:latest \
+		/build-qpkg.sh
 
 .PHONY: clean
 clean:
 	rm -rf out/pkg
-	rm -f out/tailscaled-*
-	rm -f out/tailscale-*
