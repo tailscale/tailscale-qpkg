@@ -15,9 +15,9 @@ downloaded in the Docker containers. To invoke the build, run `make out/pkg`.
 This builds Tailscale QPKG for different platforms and stores them in
 **out/pkg**.
 
-By default, Tailscale release v1.8.7 is built. To configure the release number,
+By default, Tailscale release v1.8.8 is built. To configure the release number,
 set the environment variable `TSTAG` to the release number, e.g.
-`TSTAG=v1.8.7 make out/pkg`.
+`TSTAG=v1.8.8 make out/pkg`.
 
 Installation
 ------------
