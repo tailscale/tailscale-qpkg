@@ -9,7 +9,7 @@ QPKG_AUTHOR="Tailscale Inc."
 # License for the packaged application
 #QPKG_LICENSE=""
 # One-line description of the packaged application
-#QPKG_SUMMARY=""
+#QPKG_SUMMARY="Connect all your devices using WireGuard, without the hassle."
 
 # Preferred number in start/stop sequence.
 QPKG_RC_NUM="101"
