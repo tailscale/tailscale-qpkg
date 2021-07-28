@@ -17,12 +17,12 @@ pkg: fetch
 	docker run --rm \
 		-e TSTAG=${TSTAG} \
 		-e QNAPTAG=${QNAPTAG} \
-		-v ${CURDIR}/out/tailscale-${TSTAG}:/out \
-		-v ${CURDIR}/Tailscale:/Tailscale \
-		-v ${CURDIR}/build/build-qpkg.sh:/build-qpkg.sh \
+		-v ${PWD}/out/tailscale-${TSTAG}:/out \
+		-v ${PWD}/Tailscale:/Tailscale \
+		-v ${PWD}/build/build-qpkg.sh:/build-qpkg.sh \
 		build.tailscale.io/qdk:latest \
 		/build-qpkg.sh
 
 .PHONY: clean
 clean:
-	rm -rf out/pkg
+	rm -rf out
