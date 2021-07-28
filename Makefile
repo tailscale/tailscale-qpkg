@@ -1,7 +1,7 @@
 TRACK ?= stable
 # QNAP has a upper limit of 10 characters for the version.
 # For unstable builds we might have 1.X.YYYY-Z
-TSTAG ?= 1.8.7
+TSTAG ?= 1.12.1
 QNAPTAG ?= 1
 
 .PHONY: fetch
