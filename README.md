@@ -22,12 +22,11 @@ set the environment variable `TSTAG` to the release number, e.g.
 Installation
 ------------
 
-1. Install QVPN package in QNAP App Center to provide `tun` kernel modules.
-2. Manually install Tailscale package in QNAP App Center.
-3. SSH into your QNAP
-4. Get system volume path: `getcfg SHARE_DEF defVolMP -f /etc/config/def_share.info` (e.g. `/share/CE_CACHEDEV1_DATA/`).
-5. Go to Tailscale package directory: `cd /share/CE_CACHEDEV1_DATA/.qpkg/Tailscale`
-6. Authorize your client: `./tailscale -socket var/run/tailscale/tailscaled.sock up`
+1. Manually install Tailscale package in QNAP App Center.
+2. SSH into your QNAP
+3. Get system volume path: `getcfg SHARE_DEF defVolMP -f /etc/config/def_share.info` (e.g. `/share/CE_CACHEDEV1_DATA/`).
+4. Go to Tailscale package directory: `cd /share/CE_CACHEDEV1_DATA/.qpkg/Tailscale`
+5. Authorize your client: `./tailscale -socket var/run/tailscale/tailscaled.sock up`
 
 License
 -------
