@@ -15,9 +15,9 @@ downloaded in the Docker containers. To invoke the build, run `make out/pkg`.
 This builds Tailscale QPKG for different platforms and stores them in
 **out/pkg**.
 
-By default, Tailscale release v1.8.6 is built. To configure the release number,
+By default, Tailscale release v1.20.2 is built. To configure the release number,
 set the environment variable `TSTAG` to the release number, e.g.
-`TSTAG=v1.8.6 make out/pkg`.
+`TSTAG=v1.20.2 make out/pkg`.
 
 Installation
 ------------
@@ -35,6 +35,7 @@ Installation
 5. Get system volume path: `getcfg SHARE_DEF defVolMP -f /etc/config/def_share.info` (e.g. `/share/CE_CACHEDEV1_DATA/`).
 6. Go to Tailscale package directory: `cd /share/CE_CACHEDEV1_DATA/.qpkg/Tailscale`
 7. Authorize your client: `./tailscale -socket var/run/tailscale/tailscaled.sock up`
+
 
 License
 -------
