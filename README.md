@@ -36,7 +36,7 @@ Installation
 ------------
 
 1. Manually install Tailscale package in QNAP App Center.
-2. SSH into your QNAP and push Q in the menu to get shell.
+2. SSH into your QNAP. If instead of command line shell you see a list of options, choose Q to open shell.
 3. Get system volume path: `getcfg SHARE_DEF defVolMP -f /etc/config/def_share.info` (e.g. `/share/CE_CACHEDEV1_DATA/`).
 4. Go to Tailscale package directory by using the path you got above: `cd /share/CE_CACHEDEV1_DATA/.qpkg/Tailscale`
 5. Authorize your client: `./tailscale -socket var/run/tailscale/tailscaled.sock up`
