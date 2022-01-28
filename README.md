@@ -25,13 +25,12 @@ How-To Build in Windows
   1a. Quick Start WSL by entering this command in an administrator PowerShell or Windows Command Prompt and then restarting your machine `wsl --install`
 2. Install Windows Terminal https://aka.ms/terminal
 3. From Windows Command Prompt or PowerShell, you can open your default Linux distribution inside your current command line, by entering: `wsl.exe`
-4. When in WSL run `sudo apt install docker.io`
+4. When in WSL run `sudo apt install docker.io build-essential -y`
 5. `git clone https://github.com/ivokub/tailscale-qpkg.git`
-6. `cd tailscale-qpkg/`
-7. `sudo dockerd` (then open a new windows to be able to run next line, if you ctrl-c the service stops)
-8. `cd tailscale-qpkg/`
+6. `sudo dockerd` (then open a new linux session to be able to run next line, if you ctrl-c the service stops)
+7. `cd tailscale-qpkg/`
 9. `sudo make out/pkg`
-10. You can find the files if you do "Win+R" command and paste `%USERPROFILE%\tailscale-qpkg\out`
+10. You can find the files if you do "Win+R" command and paste `%USERPROFILE%\tailscale-qpkg\out\pkg`
 
 Installation
 ------------
