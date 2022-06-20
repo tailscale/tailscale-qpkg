@@ -41,14 +41,12 @@ Installation
 4. Go to Tailscale package directory by using the path you got above: `cd /share/CE_CACHEDEV1_DATA/.qpkg/Tailscale`
 5. Authorize your client: `./tailscale -socket var/run/tailscale/tailscaled.sock up`
 
-Update to new version
-------------
-To update the QNAP when a new tailscale releases exists:
-1. Run step 3 and then do cd tailscale-qpkg/ to enter the cloned git directory
-2. Run `git pull https://github.com/ivokub/tailscale-qpkg.git`
-3. Do step 6-9 in "How-To Build in Windows" again
-4. Then login to QNAP gui and Manually install Tailscale package in QNAP App Center again, this will overwrite the old version and maintaining settings.
-5. Done!
+Updating
+--------
+
+When Tailscale package is already installed, then it is sufficient to install only a new version of Tailscale package in QNAP App Center. The service will restart automatically and use current configuration.
+
+To build new package manually, rerun the commands for corresponding target (UNIX or Windows) in the updated repository.
 
 License
 -------
