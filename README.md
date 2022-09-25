@@ -5,7 +5,7 @@ Tailscale QPKG builder
 ======================
 
 This repository includes build scripts for building Tailscale client QPKG for
-use in QNAP NAS.
+use in QNAP NAS. For common issues see [FAQ](#FAQ)
 
 Attention!
 ----------
@@ -47,6 +47,19 @@ Installation
 3. Get system volume path: `getcfg SHARE_DEF defVolMP -f /etc/config/def_share.info` (e.g. `/share/CE_CACHEDEV1_DATA/`).
 4. Go to Tailscale package directory by using the path you got above: `cd /share/CE_CACHEDEV1_DATA/.qpkg/Tailscale`
 5. Authorize your client: `./tailscale -socket var/run/tailscale/tailscaled.sock up`
+
+FAQ
+---
+
+* Installation completes successfully, but Tailscale service does not start.
+
+  Try installing QVPN package in the App Centre. Newer QTS versions contain the
+  tun kernel module required for Wireguard but older releases don't. QVPN has
+  the module prepackaged.
+
+* Tailscale service starts but I am unable to connect to device using Tailscale IP.
+
+  Allow incoming connections from 100.0.0.0/8 network in the firewall.
 
 License
 -------
