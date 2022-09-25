@@ -7,6 +7,13 @@ Tailscale QPKG builder
 This repository includes build scripts for building Tailscale client QPKG for
 use in QNAP NAS.
 
+Attention!
+----------
+
+QTS version 5.0.1.2145 is known to break Tailscale installation. Do not upgrade
+your QNAP if you do not have secondary access to your device or you may risk
+losing access. For details see [issue #46](https://github.com/ivokub/tailscale-qpkg/issues/46).
+
 Build
 -----
 
