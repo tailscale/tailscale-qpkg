@@ -110,9 +110,8 @@
 #}"
 #
 PKG_POST_REMOVE="{
-    $CMD_RM -rf /share/Web/Tailscale
-    $CMD_RM -rf /var/run/tailscale
-    $CMD_RM -rf /var/lib/tailscale
+    rm -f /home/httpd/cgi-bin/qpkg/Tailscale
+    rm -rf /tmp/tailscale
 }"
 #
 ######################################################################
@@ -133,18 +132,11 @@ PKG_POST_REMOVE="{
 # Define any package specific operations that shall be performed when
 # the package is installed.
 ######################################################################
-pkg_pre_install(){
-    $CMD_MKDIR -p /var/run/tailscale
-    $CMD_MKDIR -p /var/lib/tailscale
+pkg_install(){
+    ${CMD_MKDIR} -p ${SYS_QPKG_DIR}/state
 }
-#
-#pkg_install(){
-#}
-#
+
 pkg_post_install(){
-    $CMD_MKDIR -p /share/Web/Tailscale
-    $CMD_RM /share/Web/Tailscale/index.cgi || true
-    $CMD_LN -s ${SYS_QPKG_DIR}/index.cgi /share/Web/Tailscale/index.cgi
-    $CMD_ECHO "Include ${SYS_QPKG_DIR}/allow-cgi" >> /etc/config/apache/apache.conf
-    /etc/init.d/Qthttpd.sh reload_apache
+    ${CMD_MKDIR} -p /home/httpd/cgi-bin/qpkg
+    ${CMD_LN} -sf ${SYS_QPKG_DIR}/ui /home/httpd/cgi-bin/qpkg/${QPKG_NAME}
 }

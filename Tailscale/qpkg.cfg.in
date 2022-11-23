@@ -20,7 +20,7 @@ QPKG_SERVICE_PROGRAM="Tailscale.sh"
 #QPKG_DISABLE_APPCENTER_UI_SERVICE=1
 
 # Specifies any packages required for the current package to operate.
-QPKG_REQUIRE="QVPN"
+QPKG_REQUIRE=""
 # Specifies what packages cannot be installed if the current package
 # is to operate properly.
 #QPKG_CONFLICT="Python"
@@ -32,7 +32,7 @@ QPKG_SERVICE_PORT="41641"
 # Location of file with running service's PID
 #QPKG_SERVICE_PIDFILE=""
 # Relative path to web interface
-QPKG_WEBUI="/Tailscale/index.cgi"
+QPKG_WEBUI="/cgi-bin/qpkg/Tailscale/index.cgi"
 # Port number for the web interface.
 #QPKG_WEB_PORT=""
 # Port number for the SSL web interface.
@@ -53,15 +53,15 @@ QPKG_USE_PROXY="1"
 #QPKG_DESKTOP_APP_WIN_HEIGHT=""
 
 # Minimum QTS version requirement
-QTS_MINI_VERSION="4.1.0"
+QTS_MINI_VERSION="5.0.0"
 # Maximum QTS version requirement
-QTS_MAX_VERSION="5.0.0"
+#QTS_MAX_VERSION="5.0.0"
 
 # Select volume
 # 1: support installation
 # 2: support migration
 # 3 (1+2): support both installation and migration
-#QPKG_VOLUME_SELECT="0"
+QPKG_VOLUME_SELECT="1"
 
 # Set timeout for QPKG enable and QPKG disable (since 4.1.0)
 # Format in seconds (enable, disable)
@@ -84,7 +84,7 @@ QDK_DATA_DIR_ICONS="icons"
 # Location of files specific to x86 (64-bit) packages.
 #QDK_DATA_DIR_X86_64="x86_64"
 # Location of files common to all architectures.
-#QDK_DATA_DIR_SHARED="shared"
+QDK_DATA_DIR_SHARED="shared"
 # Location of configuration files.
 #QDK_DATA_DIR_CONFIG="config"
 # Name of local data package.

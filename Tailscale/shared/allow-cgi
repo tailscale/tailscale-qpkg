@@ -1,4 +1,0 @@
-<Directory "/share/Web/Tailscale">
-    Options +ExecCGI
-    AddHandler cgi-script .cgi
-</Directory>

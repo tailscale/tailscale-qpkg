@@ -1,30 +1,34 @@
 #!/bin/sh
 CONF=/etc/config/qpkg.conf
 QPKG_NAME="Tailscale"
-QPKG_ROOT=`/sbin/getcfg $QPKG_NAME Install_Path -f ${CONF}`
-export QNAP_QPKG=$QPKG_NAME
+QPKG_ROOT=`/sbin/getcfg ${QPKG_NAME} Install_Path -f ${CONF}`
+export QNAP_QPKG=${QPKG_NAME}
 set -e
 
 case "$1" in
   start)
-    ENABLED=$(/sbin/getcfg $QPKG_NAME Enable -u -d FALSE -f $CONF)
-    if [ "$ENABLED" != "TRUE" ]; then
-        echo "$QPKG_NAME is disabled."
+    ENABLED=$(/sbin/getcfg ${QPKG_NAME} Enable -u -d FALSE -f ${CONF})
+    if [ "${ENABLED}" != "TRUE" ]; then
+        echo "${QPKG_NAME} is disabled."
         exit 1
     fi
-    if [ -e $QPKG_ROOT/var/run/tailscale/tailscale.pid ]; then
-        echo "$QPKG_NAME is already running."
-        exit 0
+    mkdir -p -m 0755 /tmp/tailscale
+    if [ -e /tmp/tailscale/tailscaled.pid ]; then
+        PID=$(cat /tmp/tailscale/tailscaled.pid)
+        if [ test -d /proc/${PID}/ ]; then
+          echo "${QPKG_NAME} is already running."
+          exit 0
+        fi
     fi
-    $QPKG_ROOT/tailscaled --port 41641 --state=/var/lib/tailscale/tailscaled.state --socket=/var/run/tailscale/tailscaled.sock 2> /var/log/tailscaled.log &
-    echo $! > $QPKG_ROOT/var/run/tailscale/tailscale.pid
+    ${QPKG_ROOT}/tailscaled --port 41641 --state=${QPKG_ROOT}/state/tailscaled.state --socket=/tmp/tailscale/tailscaled.sock 2> /dev/null &
+    echo $! > /tmp/tailscale/tailscaled.pid
     ;;
 
   stop)
-    if [ -e $QPKG_ROOT/var/run/tailscale/tailscale.pid ]; then
-      ID=$(cat $QPKG_ROOT/var/run/tailscale/tailscale.pid)
-      kill -9 $ID || true
-      rm -f $QPKG_ROOT/var/run/tailscale/tailscale.pid
+    if [ -e /tmp/tailscale/tailscaled.pid ]; then
+      PID=$(cat /tmp/tailscale/tailscaled.pid)
+      kill -9 ${PID} || true
+      rm -f /tmp/tailscale/tailscaled.pid
     fi
     ;;
 
