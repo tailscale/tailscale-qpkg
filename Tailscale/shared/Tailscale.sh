@@ -20,7 +20,7 @@ case "$1" in
           exit 0
         fi
     fi
-    ${QPKG_ROOT}/tailscaled --port 41641 --state=${QPKG_ROOT}/state/tailscaled.state --socket=/tmp/tailscale/tailscaled.sock 2> /dev/null &
+    ${QPKG_ROOT}/tailscaled --port 41641 --statedir=${QPKG_ROOT}/state --socket=/tmp/tailscale/tailscaled.sock 2> /dev/null &
     echo $! > /tmp/tailscale/tailscaled.pid
     ;;
 
