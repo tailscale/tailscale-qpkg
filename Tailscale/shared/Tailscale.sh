@@ -15,7 +15,7 @@ case "$1" in
     mkdir -p -m 0755 /tmp/tailscale
     if [ -e /tmp/tailscale/tailscaled.pid ]; then
         PID=$(cat /tmp/tailscale/tailscaled.pid)
-        if [ test -d /proc/${PID}/ ]; then
+        if [ -d /proc/${PID}/ ]; then
           echo "${QPKG_NAME} is already running."
           exit 0
         fi
