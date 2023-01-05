@@ -1,1 +1,4 @@
 out
+Tailscale/certificate
+Tailscale/private_key
+Tailscale/private_key.encrypted
