@@ -3,6 +3,7 @@ CONF=/etc/config/qpkg.conf
 QPKG_NAME="Tailscale"
 QPKG_ROOT=`/sbin/getcfg ${QPKG_NAME} Install_Path -f ${CONF}`
 export QNAP_QPKG=${QPKG_NAME}
+export PIDF=/var/run/tailscaled.pid
 set -e
 
 case "$1" in
@@ -13,22 +14,22 @@ case "$1" in
         exit 1
     fi
     mkdir -p -m 0755 /tmp/tailscale
-    if [ -e /tmp/tailscale/tailscaled.pid ]; then
-        PID=$(cat /tmp/tailscale/tailscaled.pid)
+    if [ -e ${PIDF} ]; then
+        PID=$(cat ${PIDF})
         if [ -d /proc/${PID}/ ]; then
           echo "${QPKG_NAME} is already running."
           exit 0
         fi
     fi
-    ${QPKG_ROOT}/tailscaled --port 41641 --statedir=${QPKG_ROOT}/state --socket=/tmp/tailscale/tailscaled.sock 2> /dev/null &
-    echo $! > /tmp/tailscale/tailscaled.pid
+    tailscaled --port 41641 --statedir=${QPKG_ROOT}/state 2> /dev/null &
+    echo $! > ${PIDF}
     ;;
 
   stop)
-    if [ -e /tmp/tailscale/tailscaled.pid ]; then
-      PID=$(cat /tmp/tailscale/tailscaled.pid)
+    if [ -e ${PIDF} ]; then
+      PID=$(cat ${PIDF})
       kill -9 ${PID} || true
-      rm -f /tmp/tailscale/tailscaled.pid
+      rm -f ${PIDF}
     fi
     ;;
 
