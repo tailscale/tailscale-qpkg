@@ -6,7 +6,8 @@ use in QNAP NAS devices.
 ## Build
 
 The build depends on Docker and `make`. All other build dependencies are
-downloaded in the Docker containers. To invoke the build, run `make pkg`.
+downloaded in the Docker containers. To invoke the build, run
+`make build-qdk-container` to build the container and run `make pkg`.
 This builds Tailscale QPKG for different platforms and stores them in
 **out/pkg**.
 
