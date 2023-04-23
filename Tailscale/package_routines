@@ -136,7 +136,5 @@ pkg_install(){
     ${CMD_MKDIR} -p ${SYS_QPKG_DIR}/state
 }
 
-pkg_post_install(){
-    ${CMD_MKDIR} -p /home/httpd/cgi-bin/qpkg
-    ${CMD_LN} -sf ${SYS_QPKG_DIR}/ui /home/httpd/cgi-bin/qpkg/${QPKG_NAME}
-}
+#pkg_post_install(){
+#}

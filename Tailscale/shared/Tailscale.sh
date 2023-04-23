@@ -12,6 +12,8 @@ case "$1" in
         echo "${QPKG_NAME} is disabled."
         exit 1
     fi
+    mkdir -p /home/httpd/cgi-bin/qpkg
+    ln -sf ${QPKG_ROOT}/ui /home/httpd/cgi-bin/qpkg/${QPKG_NAME}
     mkdir -p -m 0755 /tmp/tailscale
     if [ -e /tmp/tailscale/tailscaled.pid ]; then
         PID=$(cat /tmp/tailscale/tailscaled.pid)
