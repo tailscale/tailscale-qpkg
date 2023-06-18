@@ -112,6 +112,9 @@
 PKG_POST_REMOVE="{
     rm -f /home/httpd/cgi-bin/qpkg/Tailscale
     rm -rf /tmp/tailscale
+    if [ -f /etc/resolv.pre-tailscale-backup.conf ] && grep -q 100.100.100.100 /etc/resolv.conf; then
+        mv /etc/resolv.pre-tailscale-backup.conf /etc/resolv.conf
+    fi
 }"
 #
 ######################################################################
