@@ -2,6 +2,7 @@
 CONF=/etc/config/qpkg.conf
 QPKG_NAME="Tailscale"
 QPKG_ROOT=`/sbin/getcfg ${QPKG_NAME} Install_Path -f ${CONF}`
+QPKG_PORT=`/sbin/getcfg ${QPKG_NAME} Service_Port -f ${CONF}`
 export QNAP_QPKG=${QPKG_NAME}
 set -e
 
@@ -22,7 +23,7 @@ case "$1" in
           exit 0
         fi
     fi
-    ${QPKG_ROOT}/tailscaled --port 41641 --statedir=${QPKG_ROOT}/state --socket=/tmp/tailscale/tailscaled.sock 2> /dev/null &
+    ${QPKG_ROOT}/tailscaled --port ${QPKG_PORT} --statedir=${QPKG_ROOT}/state --socket=/tmp/tailscale/tailscaled.sock 2> /dev/null &
     echo $! > /tmp/tailscale/tailscaled.pid
     ;;
 
