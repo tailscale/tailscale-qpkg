@@ -33,7 +33,11 @@ sed "s/\$QPKG_VER/$TSTAG-$QNAPTAG/g" /Tailscale/qpkg.cfg.in > /Tailscale/qpkg.cf
 qbuild --root /Tailscale --build-arch x86 --build-dir /out/pkg
 qbuild --root /Tailscale --build-arch x86_ce53xx --build-dir /out/pkg
 qbuild --root /Tailscale --build-arch x86_64 --build-dir /out/pkg
-qbuild --root /Tailscale --build-arch arm-x19 --build-dir /out/pkg
 qbuild --root /Tailscale --build-arch arm-x31 --build-dir /out/pkg
 qbuild --root /Tailscale --build-arch arm-x41 --build-dir /out/pkg
 qbuild --root /Tailscale --build-arch arm_64 --build-dir /out/pkg
+
+# arm-x19 NAS don't support QTS5 anyway, so let's downgrade the requirements
+# and build this one with QTS 4 support.
+sed "s/\$QPKG_VER/$TSTAG-$QNAPTAG/g" /Tailscale/qpkg-QTS4.cfg.in >/Tailscale/qpkg.cfg
+qbuild --root /Tailscale --build-arch arm-x19 --build-dir /out/pkg
