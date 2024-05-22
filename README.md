@@ -1,26 +1,36 @@
 # Tailscale package for QNAP NAS
 
-This repository includes build scripts for building Tailscale client QPKG for
-use in QNAP NAS devices.
+QPKG client for Tailscale.
 
-## Build
+## Tailscale package for QNAP NAS
 
-The build depends on Docker and `make`. All other build dependencies are
-downloaded in the Docker containers. To invoke the build, run
-`make build-qdk-container` to build the container and run `make pkg`.
-This builds Tailscale QPKG for different platforms and stores them in
-**out/pkg**.
-
-To configure the release number from what is in the Makefile,
-set the environment variable `TSTAG` to the release number, e.g.
-`TRACK=unstable TSTAG=1.33.161 make pkg`.
+File issues at: https://github.com/tailscale/tailscale-qpkg/issues
 
 ## Installation
 
-1. Manually install Tailscale package in QNAP App Center.
-2. Open the Tailscale app and proceed with login.
+See the [QNAP installation guide](https://tailscale.com/kb/1273/qnap) on the Tailscale website.
+
+## Building from source
+
+The source code for the QNAP packages is kept in (Tailscale's main code repository)[https://github.com/tailscale/tailscale]. You can build the packages from source yourself with:
+
+```
+git clone https://github.com/tailscale/tailscale.git
+cd tailscale
+./tool/go run ./cmd/dist build qnap
+```
+
+The build depends on Docker. All other build dependencies are downloaded in the Docker containers.
+
+If everything worked you should have a directory called `dist` that contains the QPKG files.
+
+## Precompiled packages
+
+Tailscale also makes precompiled QNAP packages available, supporting a variety of architectures.
+
+- [Stable](https://pkgs.tailscale.com/stable/#qpkgs): stable releases. If you're not sure which track to use, pick this one.
+- [Unstable](https://pkgs.tailscale.com/unstable/#qpkgs): the bleeding edge. Pushed early and often. Expect rough edges!
 
 ## Credits
 
-Thanks to [@ivokub](https://github.com/ivokub/) for creating this
-project and transferring it to Tailscale's GitHub org.
+Thanks to [@ivokub](https://github.com/ivokub/) for originally creating the Tailscale QPKGs project and transferring it to Tailscale's GitHub org.
