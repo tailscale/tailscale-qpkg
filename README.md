@@ -12,7 +12,7 @@ See the [QNAP installation guide](https://tailscale.com/kb/1273/qnap) on the Tai
 
 ## Building from source
 
-The source code for the QNAP packages is kept in (Tailscale's main code repository)[https://github.com/tailscale/tailscale]. You can build the packages from source yourself with:
+The source code for the QNAP packages is kept in [Tailscale's main code repository](https://github.com/tailscale/tailscale). You can build the packages from source yourself with:
 
 ```
 git clone https://github.com/tailscale/tailscale.git
